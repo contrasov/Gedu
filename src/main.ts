@@ -6,8 +6,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('Auth API')
-    .setDescription('API de autenticação simples')
+    .setTitle('Gedu API')
+    .setDescription('API monolítica projetada para gerenciar um sistema acadêmico simples')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
