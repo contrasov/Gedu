@@ -1,47 +1,43 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { ObjectId } from "mongoose";
 import { UserType } from "src/modules/user/user.schema";
-import { IsNumber, IsNotEmpty, IsOptional } from 'class-validator';
 
 
-export class RegisterUserDto {
+export class CreateUserDto {
     @ApiProperty({enum: UserType})
-    @IsNotEmpty()
     type: UserType;
 
     @ApiProperty()
-    @IsNotEmpty()
     name: string;
 
     @ApiProperty()
-    @IsNotEmpty()
     username: string;
 
     @ApiProperty()
-    @IsNotEmpty()
     dateBirth: string;
     
     @ApiProperty()
-    @IsNotEmpty()
     phone: string;
 
     @ApiProperty()
-    @IsNotEmpty()
     email: string;
     
     @ApiProperty()
-    @IsNotEmpty()
     address: string;
 
     @ApiProperty()
-    @IsNotEmpty()
     cpf: string;
 
     @ApiProperty({required: false})
-    @IsOptional()
-    training: string;    
+    training: string;
+
+    @ApiProperty({required: false})
+    courseId: ObjectId;
+    
+    @ApiProperty({required: false})
+    subjects: ObjectId[];
 
     @ApiProperty()
-    @IsNotEmpty()
     password: string;
 }
 

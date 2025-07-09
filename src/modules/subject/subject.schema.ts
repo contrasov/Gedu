@@ -14,6 +14,8 @@ export class Subject extends Document {
     
     @Prop({type: mongoose.Schema.Types.ObjectId, required: true})
     courseId: ObjectId;
+    
+    @Prop({required: true})
     status: boolean;
     
     @Prop({type: Date, default: Date.now})

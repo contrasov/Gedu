@@ -22,7 +22,11 @@ export class CourseService {
     }
 
     async getCourse(courseId: string){
-        return await this.courseModel.findById(courseId);
+        return await this.courseModel.findById(courseId).populate({
+            path: 'subjectIds',
+            model: 'Subject',
+            select: 'code name',
+        });
     }
 
     async putCourse(courseId: string, updateCourseDto: Partial<CourseDto>){
