@@ -8,6 +8,10 @@ export class RegisterUserDto {
     @IsNotEmpty()
     type: UserType;
 
+    @ApiProperty({required: false})
+    @IsOptional()
+    code: string;
+
     @ApiProperty()
     @IsNotEmpty()
     name: string;

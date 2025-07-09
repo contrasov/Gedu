@@ -5,11 +5,14 @@ import * as bcrypt from 'bcryptjs';
 import { User } from '../user/user.schema';
 import { JwtService } from '@nestjs/jwt';
 import { RegisterUserDto } from './dto/auth.dto';
- 
+import { UserService } from '../user/user.service';
+
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel(User.name) private userModel: Model<User>, private jwtService: JwtService
+    @InjectModel(User.name) private userModel: Model<User>, 
+    private jwtService: JwtService,
+    private userService: UserService
   ) {}
 
   async register(registerUserDto: RegisterUserDto): Promise<User> {
@@ -18,6 +21,11 @@ export class AuthService {
       ...registerUserDto,
       password: hashedPassword
     });
+
+    if(registerUserDto.code){
+      const code = await this.userService.verifyCode({code: registerUserDto.code});
+      newUser.courseId = code.courseId;
+    }
     return await newUser.save();
   }
 
