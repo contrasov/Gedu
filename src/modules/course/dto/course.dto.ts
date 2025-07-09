@@ -5,10 +5,6 @@ import { IsNumber, IsNotEmpty, IsOptional } from 'class-validator';
 export class CourseDto {
     @ApiProperty()
     @IsNotEmpty()
-    code: string;
-    
-    @ApiProperty()
-    @IsNotEmpty()
     name: string;
 
     @ApiProperty({required: false})
@@ -20,9 +16,9 @@ export class CourseDto {
     @IsNumber()
     semesterDuration: number;
 
-    @ApiProperty({required: true})
-    @IsNotEmpty()
-    subjectId: ObjectId;
+    @ApiProperty({required: false})
+    @IsOptional()
+    subjectIds: ObjectId[];
     
     @IsNotEmpty()
     @ApiProperty()

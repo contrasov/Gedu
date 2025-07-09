@@ -3,7 +3,7 @@ import mongoose, { Document, ObjectId } from "mongoose";
 
 @Schema({collection: 'courses'})
 export class Course extends Document {
-    @Prop({required: true})
+    @Prop({required: false})
     code: string;
 
     @Prop({required: true})
@@ -18,8 +18,8 @@ export class Course extends Document {
     @Prop({required: true})
     status: boolean;
 
-    @Prop({type: mongoose.Schema.Types.ObjectId, required: true })
-    subjectId: ObjectId;
+    @Prop({type: [mongoose.Schema.Types.ObjectId], required: false })
+    subjectIds: ObjectId[];
     
     @Prop({type: Date, default: Date.now})
     dateCreate: Date;
